@@ -21,13 +21,13 @@ public class MenuScreen extends BaseScreen{
     {
         // Creating a background
         BaseActor background = new BaseActor(0,0, mainStage); // Initializing the background image actor;
-        background.loadTexture( "misc_sky.jpg" ); // setting the image
+        background.loadTexture( "night.png" ); // setting the image
         background.setSize(1000,600);  // Adjusted the size of background
         BaseActor title = new BaseActor(0,0, mainStage);// Initializing the title image actor.
-        title.loadTexture( "a-bad-dream.png" ); // setting the image
+        //title.loadTexture( "Title_Prasart.png" ); // setting the image
 
         // This generates a button from the LibGDX library.
-        TextButton startButton = new TextButton( "Start", BaseGame.textButtonStyle );
+        TextButton startButton = new TextButton( "Start or Space Bar", BaseGame.textButtonStyle );
 
         // An event listener for the generated button to start the game.
         startButton.addListener(
@@ -35,12 +35,13 @@ public class MenuScreen extends BaseScreen{
                     if (!(e instanceof InputEvent) ||
                             !((InputEvent) e).getType().equals(Type.touchDown))
                         return false;
+                    BaseGame.clickSound.play();
                     BaseGame.setActiveScreen(new StoryScreen()); // Opens the StoryScreen class
                     return false;
                 }
         );
         // Creates a quit button from the LibGdx text button library
-        TextButton quitButton = new TextButton( "Quit", BaseGame.textButtonStyle );
+        TextButton quitButton = new TextButton( "Exit or ESC", BaseGame.textButtonStyle );
 
         // An event listener for the generated button to close the application.
         quitButton.addListener(
@@ -48,6 +49,7 @@ public class MenuScreen extends BaseScreen{
                     if (!(e instanceof InputEvent) ||
                             !((InputEvent) e).getType().equals(Type.touchDown))
                         return false;
+                    BaseGame.clickSound.play();
                     Gdx.app.exit(); // closes the app
                     return false;
                 }
@@ -63,7 +65,7 @@ public class MenuScreen extends BaseScreen{
     { }
     public boolean keyDown(int keyCode) // Method to check if the button was clicked.
     {
-        if (Gdx.input.isKeyPressed(Keys.ENTER))
+        if (Gdx.input.isKeyPressed(Keys.SPACE))
             BaseGame.setActiveScreen( new StoryScreen() );
         if (Gdx.input.isKeyPressed(Keys.ESCAPE))
             Gdx.app.exit();

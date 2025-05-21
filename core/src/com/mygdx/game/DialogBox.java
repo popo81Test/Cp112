@@ -21,7 +21,7 @@ public class DialogBox extends BaseActor
     public DialogBox(float x, float y, Stage s)
     {
         super(x,y,s);
-        loadTexture("dialog-translucent.png");
+        loadTexture("DialogBox.png");
 
         dialogLabel = new Label(" ", BaseGame.labelStyle);
         dialogLabel.setWrap(true);

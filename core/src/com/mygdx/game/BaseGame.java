@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
  */
 
 /**
- *  Created when program is launched; 
+ *  Created when program is launched;
  *  manages the screens that appear during the game.
  */
 public abstract class BaseGame extends Game
@@ -36,27 +37,27 @@ public abstract class BaseGame extends Game
 
     public static LabelStyle labelStyle; // BitmapFont + Color
     public static TextButtonStyle textButtonStyle; // NPD + BitmapFont + Color
-
+    public static Sound clickSound;
     /**
      *  Called when game is initialized; stores global reference to game object.
      */
-    public BaseGame() 
-    {        
+    public BaseGame()
+    {
         game = this;
     }
 
     /**
-     *  Called when game is initialized, 
+     *  Called when game is initialized,
      *  after Gdx.input and other objects have been initialized.
      */
-    public void create() 
-    {        
+    public void create()
+    {
         // prepare for multiple classes/stages/actors to receive discrete input
         InputMultiplexer im = new InputMultiplexer();
         Gdx.input.setInputProcessor( im );
 
         // parameters for generating a custom bitmap font
-        FreeTypeFontGenerator fontGenerator = 
+        FreeTypeFontGenerator fontGenerator =
             new FreeTypeFontGenerator(Gdx.files.internal("ComicSansMSRegular.ttf"));
         FreeTypeFontParameter fontParameters = new FreeTypeFontParameter();
         fontParameters.size = 24;
@@ -71,14 +72,17 @@ public abstract class BaseGame extends Game
 
         labelStyle = new LabelStyle();
         labelStyle.font = customFont;
-        
+
         textButtonStyle = new TextButtonStyle();
 
-        Texture   buttonTex   = new Texture( Gdx.files.internal("button.png") );
+        Texture   buttonTex   = new Texture( Gdx.files.internal("Button.png") );
         NinePatch buttonPatch = new NinePatch(buttonTex, 24,24,24,24);
         textButtonStyle.up    = new NinePatchDrawable( buttonPatch );
         textButtonStyle.font      = customFont;
         textButtonStyle.fontColor = Color.GRAY;
+
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/Click.wav"));
+        fontGenerator.dispose();
     }
 
     /**
@@ -88,5 +92,13 @@ public abstract class BaseGame extends Game
     public static void setActiveScreen(BaseScreen s)
     {
         game.setScreen(s);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        if (clickSound != null) {
+            clickSound.dispose(); // อย่าลืม Dispose เสียงเมื่อเลิกใช้งาน
+        }
     }
 }

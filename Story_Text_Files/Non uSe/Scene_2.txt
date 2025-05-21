@@ -1,0 +1,22 @@
+: Detective Toei arrived at the entrance of Sri Khoraphum Castle.
+: The cold was coming through the door.
+: There was a cold wind whispering like someone asking for help.
+: Suddenly, a young woman came up to ask to join the journey.
+Toei[Panic]: Who there!!?!
+Chicha[Normal]: Hello, my name is Chicha. I am the descendant of the shaman who looks after this Srikhon Castle.
+Chicha[Normal]: You must have come to find "Guy", right?
+Toei[Normal]: Yes, we are.
+Toei[Doubt]: But shaman???
+Toei[Doubt]: Do these kinds of things still exist in this era? And how do you know Guy.
+Chicha[Normal]: I am a medium. That’s all you need to know. But I will never hurt you.
+Chicha[Normal]: Guy is also my friend.
+Toei[Smile]: That great. I just need someone in the area to help me find a way.
+Toei[Normal]: My name is Toei. This is my assistant Kitty.
+Chicha[Normal]: (Chicha looking at the entrance, hesitating)
+Chicha[Normal]: I am not sure... if today is a good day to go in.
+Chicha[Normal]: Grandma used to say that if anyone enters Srikhon Castle during the full moon... the ghost will wake up.
+
+[CHOICE]What should Toei do about Chicha's warning?
+[OPTION] Investigate cautiously :goto_scene_4
+[OPTION] Ask Chicha more :goto_scene_5
+[OPTION] Ignore and proceed :goto_scene_6
